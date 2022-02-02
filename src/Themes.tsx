@@ -6,5 +6,5 @@ export const lightTheme = {
 export const darkTheme = {
   mainColor: "#212121",
   textColor: "#fff",
-  primary: "#ccc",
+  primary: "#777",
 };

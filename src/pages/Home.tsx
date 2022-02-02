@@ -1,37 +1,55 @@
-import styled from "styled-components";
+import styled, { css } from "styled-components";
+import SearchMode from "../components/SearchMode";
+import { useState } from "react";
 
 const Home = () => {
+  const [isSearchMode, setIsSearchMode] = useState(false);
+
   return (
     <Main>
-      <Header>
-        <HeaderItems>
-          <Nav>
-            <NavItem>خودرو</NavItem>
-            <Vbar />
-            <NavItem>موتورسیکلت</NavItem>
-            <Vbar />
-            <NavItem>باما</NavItem>
-          </Nav>
-          <SearchInput placeholder="جستجو" type="search"></SearchInput>
-          <Login>
-            <LoginItem>ورود</LoginItem>
-            <Vbar />
-            <LoginItem>ثبت اگهی</LoginItem>
-          </Login>
-          <Logo>bama.ir</Logo>
-        </HeaderItems>
-      </Header>
-      <SideBar>
-        <SideBarItem>میانبر</SideBarItem>
-        <Hbar />
-        <SideBarItem>برند</SideBarItem>
-        <Hbar />
-        <SideBarItem>شاسی</SideBarItem>
-        <Hbar />
+      {isSearchMode ? <SearchMode /> : null}
+      {isSearchMode ? (
+        <SearchModeToggler onClick={() => setIsSearchMode(false)}>
+          <div></div>
+          <div></div>
+        </SearchModeToggler>
+      ) : null}
+      <Container>
+        <Header>
+          <HeaderItems>
+            <Nav>
+              <NavItem>خودرو</NavItem>
+              <Vbar />
+              <NavItem>موتورسیکلت</NavItem>
+              <Vbar />
+              <NavItem>باما</NavItem>
+            </Nav>
+            <SearchInput
+              onClick={() => setIsSearchMode(true)}
+              searchmode={isSearchMode}
+              placeholder={isSearchMode ? undefined : "جستجو"}
+              type="search"
+            ></SearchInput>
+            <Login>
+              <LoginItem>ورود</LoginItem>
+              <Vbar />
+              <LoginItem>ثبت اگهی</LoginItem>
+            </Login>
+            <Logo>bama.ir</Logo>
+          </HeaderItems>
+        </Header>
+        <SideBar>
+          <SideBarItem>میانبر</SideBarItem>
+          <Hbar />
+          <SideBarItem>برند</SideBarItem>
+          <Hbar />
+          <SideBarItem>شاسی</SideBarItem>
+          <Hbar />
 
-        <SideBarItem>قیمت</SideBarItem>
-      </SideBar>
-      <Banner></Banner>
+          <SideBarItem>قیمت</SideBarItem>
+        </SideBar>
+        <Banner></Banner>
+      </Container>
     </Main>
   );
 };
@@ -48,8 +66,14 @@ const Vbar = styled.div`
   height: 1rem;
   background-color: ${({ theme }) => theme.textColor};
 `;
-
 const Main = styled.main`
+  width: 100vw;
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+`;
+
+const Container = styled.div`
   width: 60rem;
   height: 100vh;
   display: grid;
@@ -90,7 +114,7 @@ const Nav = styled.nav`
 const NavItem = styled.div`
   color: ${({ theme }) => theme.textColor};
 `;
-const SearchInput = styled.input`
+const SearchInput = styled.input<{ searchmode: boolean }>`
   width: 18rem;
   height: 2.5rem;
   padding: 1rem;
@@ -106,6 +130,14 @@ const SearchInput = styled.input`
   &:focus {
     outline: none;
   }
+  transition: all 500ms;
+  ${({ searchmode }) =>
+    searchmode &&
+    css`
+      width: 27rem;
+      transform: translateX(10rem);
+      background-color: white;
+    `}
 `;
 const Login = styled.div`
   width: 9rem;
@@ -124,6 +156,8 @@ const LoginItem = styled.div`
   }
 `;
 const Logo = styled.div`
+  position: relative;
+  z-index: 2;
   font-size: 1.6rem;
   color: ${({ theme }) => theme.textColor};
 `;
@@ -144,5 +178,27 @@ const SideBarItem = styled.div`
 `;
 const Banner = styled.div`
   grid-area: banner;
+`;
+const SearchModeToggler = styled.div`
+  width: 2.5rem;
+  height: 2rem;
+  position: fixed;
+  top: 3.4rem;
+  right: 30rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  cursor: pointer;
+  div {
+    width: 2.5rem;
+    height: 0.2rem;
+    background-color: #212121;
+  }
+  div:first-child {
+    transform: translateY(0.5rem) rotateZ(45deg);
+  }
+  div:last-child {
+    transform: translateY(-0.5rem) rotateZ(-45deg);
+  }
 `;
 export default Home;
