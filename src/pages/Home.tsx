@@ -12,7 +12,7 @@ const Home = () => {
             <Vbar />
             <NavItem>باما</NavItem>
           </Nav>
-          <SearchInput placeholder="جستجو" type="text"></SearchInput>
+          <SearchInput placeholder="جستجو" type="search"></SearchInput>
           <Login>
             <LoginItem>ورود</LoginItem>
             <Vbar />
@@ -96,7 +96,7 @@ const SearchInput = styled.input`
   padding: 1rem;
   margin-right: 1rem;
   border: none;
-  background-color: #ccc;
+  background-color: ${({ theme }) => theme.primary};
   opacity: 0.5;
   border-radius: 0.3rem;
   ::placeholder {
@@ -115,10 +115,17 @@ const Login = styled.div`
   align-items: center;
 `;
 const LoginItem = styled.div`
+  padding: 0.2rem 0.6rem;
   color: ${({ theme }) => theme.textColor};
+  transition: background-color ease 300ms;
+  cursor: pointer;
+  &:hover {
+    background-color: ${({ theme }) => theme.primary};
+  }
 `;
 const Logo = styled.div`
   font-size: 1.6rem;
+  color: ${({ theme }) => theme.textColor};
 `;
 const SideBar = styled.div`
   display: flex;
@@ -129,6 +136,11 @@ const SideBar = styled.div`
 `;
 const SideBarItem = styled.div`
   color: ${({ theme }) => theme.textColor};
+  cursor: pointer;
+  transition: color ease 300ms;
+  &:hover {
+    color: purple;
+  }
 `;
 const Banner = styled.div`
   grid-area: banner;

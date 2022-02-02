@@ -1,9 +1,10 @@
-interface ThemeType {
-  mainColor: string;
-  textColor: string;
-}
-
-export const lightTheme: ThemeType = {
+export const lightTheme = {
   mainColor: "#fff",
   textColor: "#212121",
+  primary: "#ccc",
+};
+export const darkTheme = {
+  mainColor: "#212121",
+  textColor: "#fff",
+  primary: "#ccc",
 };
