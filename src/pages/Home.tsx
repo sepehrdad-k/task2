@@ -1,6 +1,31 @@
 import styled, { css } from "styled-components";
 import SearchMode from "../components/SearchMode";
+import Dropdown from "../components/Dropdown";
 import { useState } from "react";
+
+const listItem1 = [
+  "خرید خودرو",
+  "ثبت اگهی خودرو",
+  "قیمت روز خودرو",
+  "اخبار خودرو",
+  "مشخصات فنی خودرو",
+  "گوش به زنگ خودرو",
+  "کمپانی های خودرو",
+];
+const listItem2 = [
+  "خرید موتورسیکلت",
+  "ثبت اگهی موتورسیکلت",
+  "اخبار موتورسیکلت",
+  "گوش به زنگ موتورسیکلت",
+];
+const listItem3 = [
+  "ثبت نام نمایشگاه",
+  "تماس باما",
+  "تبلیغات شرکت ها",
+  "قوانین سایت",
+  "فرصت های شغلی",
+  "درباره ما",
+];
 
 const Home = () => {
   const [isSearchMode, setIsSearchMode] = useState(false);
@@ -18,11 +43,11 @@ const Home = () => {
         <Header>
           <HeaderItems>
             <Nav>
-              <NavItem>خودرو</NavItem>
+              <Dropdown itemName="خودرو" listItems={listItem1} />
               <Vbar />
-              <NavItem>موتورسیکلت</NavItem>
+              <Dropdown itemName="مونورسیکلت" listItems={listItem2} />
               <Vbar />
-              <NavItem>باما</NavItem>
+              <Dropdown itemName="باما" listItems={listItem3} />
             </Nav>
             <SearchInput
               onClick={() => setIsSearchMode(true)}
@@ -67,7 +92,7 @@ const Vbar = styled.div`
   background-color: ${({ theme }) => theme.textColor};
 `;
 const Main = styled.main`
-  width: 100vw;
+  width: 100%;
   height: 100vh;
   display: flex;
   justify-content: center;
@@ -105,19 +130,16 @@ const HeaderItems = styled.div`
   align-items: center;
 `;
 const Nav = styled.nav`
-  width: 12rem;
   height: 5rem;
   display: flex;
   justify-content: space-between;
   align-items: center;
 `;
-const NavItem = styled.div`
-  color: ${({ theme }) => theme.textColor};
-`;
 const SearchInput = styled.input<{ searchmode: boolean }>`
   width: 18rem;
   height: 2.5rem;
   padding: 1rem;
+  margin-bottom: 1rem;
   margin-right: 1rem;
   border: none;
   background-color: ${({ theme }) => theme.primary};
