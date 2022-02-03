@@ -1,31 +1,22 @@
-import styled from "styled-components";
 import ContentSlider from "./ContentSlider";
 import ShortcutSlider from "./ShortcutSlider";
+import Shasi from "./Shasi";
+import PriceRange from "./PriceRange";
+import DefaultBanner from "./DefaultBanner";
 import { BannerContentType } from "../pages/Home";
 
 const HomeBanner: React.FC<{ content: BannerContentType }> = ({ content }) => {
   if (content === "contentslider") {
-    return (
-      <Body>
-        <ContentSlider></ContentSlider>
-      </Body>
-    );
+    return <ContentSlider></ContentSlider>;
   } else if (content === "shortcutslider") {
-    return (
-      <Body>
-        <ShortcutSlider></ShortcutSlider>
-      </Body>
-    );
+    return <ShortcutSlider></ShortcutSlider>;
+  } else if (content === "shasi") {
+    return <Shasi></Shasi>;
+  } else if (content === "price") {
+    return <PriceRange></PriceRange>;
   } else {
-    return <h1>helllloooo</h1>;
+    return <DefaultBanner></DefaultBanner>;
   }
 };
-
-//styles
-
-const Body = styled.div`
-  width: inherit;
-  height: inherit;
-`;
 
 export default HomeBanner;

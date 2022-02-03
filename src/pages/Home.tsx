@@ -103,7 +103,9 @@ const Home = () => {
           </SideBarItemWrapper>
           <Hbar />
           <SideBarItemWrapper>
-            <SideBarItem>شاسی</SideBarItem>
+            <SideBarItem onClick={() => setBannerContent("shasi")}>
+              شاسی
+            </SideBarItem>
             <SideBarToggler
               mode={bannerContent}
               desiredMode="shasi"
@@ -115,7 +117,9 @@ const Home = () => {
           </SideBarItemWrapper>
           <Hbar />
           <SideBarItemWrapper>
-            <SideBarItem>قیمت</SideBarItem>
+            <SideBarItem onClick={() => setBannerContent("price")}>
+              قیمت
+            </SideBarItem>
             <SideBarToggler
               mode={bannerContent}
               desiredMode="price"
@@ -307,7 +311,7 @@ const SearchModeToggler = styled.div`
   height: 2rem;
   position: fixed;
   top: 3.4rem;
-  right: 30rem;
+  right: 20rem;
   display: flex;
   flex-direction: column;
   justify-content: space-around;
