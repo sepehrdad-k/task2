@@ -36,6 +36,7 @@ const Item = styled.div`
 `;
 const List = styled.ul`
   position: absolute;
+  z-index: 2;
   display: flex;
   flex-direction: column;
   justify-content: space-between;

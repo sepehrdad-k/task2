@@ -2,6 +2,8 @@ import styled, { css } from "styled-components";
 import SearchMode from "../components/SearchMode";
 import Dropdown from "../components/Dropdown";
 import { useState } from "react";
+import ContentSlider from "../components/ContentSlider";
+import ShortcutSlider from "../components/ShortcutSlider";
 
 const listItem1 = [
   "خرید خودرو",
@@ -70,10 +72,11 @@ const Home = () => {
           <Hbar />
           <SideBarItem>شاسی</SideBarItem>
           <Hbar />
-
           <SideBarItem>قیمت</SideBarItem>
         </SideBar>
-        <Banner></Banner>
+        <Banner>
+          <ShortcutSlider></ShortcutSlider>
+        </Banner>
       </Container>
     </Main>
   );
@@ -136,6 +139,8 @@ const Nav = styled.nav`
   align-items: center;
 `;
 const SearchInput = styled.input<{ searchmode: boolean }>`
+  position: relative;
+  z-index: 4;
   width: 18rem;
   height: 2.5rem;
   padding: 1rem;
@@ -179,7 +184,7 @@ const LoginItem = styled.div`
 `;
 const Logo = styled.div`
   position: relative;
-  z-index: 2;
+  z-index: 4;
   font-size: 1.6rem;
   color: ${({ theme }) => theme.textColor};
 `;
@@ -199,9 +204,16 @@ const SideBarItem = styled.div`
   }
 `;
 const Banner = styled.div`
+  width: 48rem;
+  height: 25rem;
   grid-area: banner;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 `;
 const SearchModeToggler = styled.div`
+  position: relative;
+  z-index: 4;
   width: 2.5rem;
   height: 2rem;
   position: fixed;

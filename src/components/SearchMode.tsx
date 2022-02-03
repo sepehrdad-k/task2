@@ -8,6 +8,7 @@ const SearchMode = () => {
 const Overlap = styled.div`
   position: fixed;
   inset: 0;
+  z-index: 3;
   background-color: ${({ theme }) => theme.primary};
 `;
 
