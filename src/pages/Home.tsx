@@ -142,11 +142,11 @@ const Home = () => {
 
 const Hbar = styled.div`
   width: 10rem;
-  height: 0.1rem;
+  height: 0.2rem;
   background-color: ${({ theme }) => theme.textColor};
 `;
 const Vbar = styled.div`
-  width: 0.1rem;
+  width: 0.175rem;
   height: 1rem;
   background-color: ${({ theme }) => theme.textColor};
 `;
@@ -178,7 +178,7 @@ const Header = styled.header`
   &::after {
     content: "";
     width: inherit;
-    height: 0.05rem;
+    height: 0.1rem;
     background-color: ${({ theme }) => theme.textColor};
   }
 `;
@@ -239,6 +239,7 @@ const LoginItem = styled.div`
   }
 `;
 const Logo = styled.div`
+  font-family: "sans-serif";
   position: relative;
   z-index: 4;
   font-size: 1.6rem;
@@ -269,7 +270,7 @@ const SideBarToggler = styled.div<{
   desiredMode: BannerContentType;
 }>`
   ${({ mode, desiredMode }) => {
-    if (mode != desiredMode) {
+    if (mode !== desiredMode) {
       return css`
         display: none;
       `;

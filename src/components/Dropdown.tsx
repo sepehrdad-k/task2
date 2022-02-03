@@ -45,6 +45,7 @@ const List = styled.ul`
   background-color: ${({ theme }) => theme.primary};
 `;
 const ListItem = styled.li`
+  color: ${({ theme }) => theme.textColor};
   width: 12rem;
   height: 3rem;
   padding-top: 1rem;
