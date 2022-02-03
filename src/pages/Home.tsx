@@ -2,8 +2,7 @@ import styled, { css } from "styled-components";
 import SearchMode from "../components/SearchMode";
 import Dropdown from "../components/Dropdown";
 import { useState } from "react";
-import ContentSlider from "../components/ContentSlider";
-import ShortcutSlider from "../components/ShortcutSlider";
+import HomeBanner from "../components/HomeBanner";
 
 const listItem1 = [
   "خرید خودرو",
@@ -29,8 +28,17 @@ const listItem3 = [
   "درباره ما",
 ];
 
+export type BannerContentType =
+  | "shortcutslider"
+  | "contentslider"
+  | "default"
+  | "shasi"
+  | "price";
+
 const Home = () => {
   const [isSearchMode, setIsSearchMode] = useState(false);
+  const [bannerContent, setBannerContent] =
+    useState<BannerContentType>("default");
 
   return (
     <Main>
@@ -66,16 +74,60 @@ const Home = () => {
           </HeaderItems>
         </Header>
         <SideBar>
-          <SideBarItem>میانبر</SideBarItem>
+          <SideBarItemWrapper>
+            <SideBarItem onClick={() => setBannerContent("shortcutslider")}>
+              میانبر
+            </SideBarItem>
+            <SideBarToggler
+              mode={bannerContent}
+              desiredMode="shortcutslider"
+              onClick={() => setBannerContent("default")}
+            >
+              <div></div>
+              <div></div>
+            </SideBarToggler>
+          </SideBarItemWrapper>
           <Hbar />
-          <SideBarItem>برند</SideBarItem>
+          <SideBarItemWrapper>
+            <SideBarItem onClick={() => setBannerContent("contentslider")}>
+              برند
+            </SideBarItem>
+            <SideBarToggler
+              mode={bannerContent}
+              desiredMode="contentslider"
+              onClick={() => setBannerContent("default")}
+            >
+              <div></div>
+              <div></div>
+            </SideBarToggler>
+          </SideBarItemWrapper>
           <Hbar />
-          <SideBarItem>شاسی</SideBarItem>
+          <SideBarItemWrapper>
+            <SideBarItem>شاسی</SideBarItem>
+            <SideBarToggler
+              mode={bannerContent}
+              desiredMode="shasi"
+              onClick={() => setBannerContent("default")}
+            >
+              <div></div>
+              <div></div>
+            </SideBarToggler>
+          </SideBarItemWrapper>
           <Hbar />
-          <SideBarItem>قیمت</SideBarItem>
+          <SideBarItemWrapper>
+            <SideBarItem>قیمت</SideBarItem>
+            <SideBarToggler
+              mode={bannerContent}
+              desiredMode="price"
+              onClick={() => setBannerContent("default")}
+            >
+              <div></div>
+              <div></div>
+            </SideBarToggler>
+          </SideBarItemWrapper>
         </SideBar>
         <Banner>
-          <ShortcutSlider></ShortcutSlider>
+          <HomeBanner content={bannerContent}></HomeBanner>
         </Banner>
       </Container>
     </Main>
@@ -195,12 +247,49 @@ const SideBar = styled.div`
   align-items: flex-start;
   grid-area: sidebar;
 `;
+const SideBarItemWrapper = styled.div`
+  width: 5rem;
+  display: flex;
+  justify-content: space-between;
+`;
 const SideBarItem = styled.div`
   color: ${({ theme }) => theme.textColor};
   cursor: pointer;
   transition: color ease 300ms;
   &:hover {
     color: purple;
+  }
+`;
+const SideBarToggler = styled.div<{
+  mode: BannerContentType;
+  desiredMode: BannerContentType;
+}>`
+  ${({ mode, desiredMode }) => {
+    if (mode != desiredMode) {
+      return css`
+        display: none;
+      `;
+    }
+  }}
+  width: 1rem;
+  height: 1rem;
+  &:hover {
+    div {
+      background-color: teal;
+    }
+  }
+  cursor: pointer;
+  div {
+    width: 1rem;
+    height: 0.1rem;
+    background-color: ${({ theme }) => theme.textColor};
+    transition: background-color 200ms;
+  }
+  div:first-child {
+    transform: translateY(0.05rem) rotateZ(45deg);
+  }
+  div:last-child {
+    transform: translateY(-0.05rem) rotateZ(-45deg);
   }
 `;
 const Banner = styled.div`

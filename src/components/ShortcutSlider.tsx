@@ -75,6 +75,8 @@ const ShortcutSlider = () => {
   );
 };
 
+//styles
+
 const Controls = styled.div`
   width: 4rem;
   height: 3rem;
