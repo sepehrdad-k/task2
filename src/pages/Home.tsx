@@ -35,7 +35,9 @@ export type BannerContentType =
   | "shasi"
   | "price";
 
-const Home = () => {
+const Home: React.FC<{
+  themeToggler: React.Dispatch<React.SetStateAction<boolean>>;
+}> = ({ themeToggler }) => {
   const [isSearchMode, setIsSearchMode] = useState(false);
   const [bannerContent, setBannerContent] =
     useState<BannerContentType>("default");
@@ -53,6 +55,9 @@ const Home = () => {
         <Header>
           <HeaderItems>
             <Nav>
+              <ThemeToggler onClick={() => themeToggler((prev) => !prev)}>
+                تغییر تم
+              </ThemeToggler>
               <Dropdown itemName="خودرو" listItems={listItem1} />
               <Vbar />
               <Dropdown itemName="مونورسیکلت" listItems={listItem2} />
@@ -311,8 +316,8 @@ const SearchModeToggler = styled.div`
   width: 2.5rem;
   height: 2rem;
   position: fixed;
-  top: 3.4rem;
-  right: 20rem;
+  top: 4.5%;
+  right: 4rem;
   display: flex;
   flex-direction: column;
   justify-content: space-around;
@@ -329,4 +334,15 @@ const SearchModeToggler = styled.div`
     transform: translateY(-0.5rem) rotateZ(-45deg);
   }
 `;
+const ThemeToggler = styled.button`
+  border: none;
+  width: 5rem;
+  height: 2rem;
+  margin-left: 1rem;
+  border-radius: 0.3rem;
+  background-color: ${({ theme }) => theme.textColor};
+  color: ${({ theme }) => theme.mainColor};
+  cursor: pointer;
+`;
+
 export default Home;
