@@ -207,7 +207,7 @@ const SearchInput = styled.input<{ searchmode: boolean }>`
   opacity: 0.5;
   border-radius: 0.3rem;
   ::placeholder {
-    color: black;
+    color: ${({ theme }) => theme.textColor};
     opacity: 1;
   }
   &:focus {
