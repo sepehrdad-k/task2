@@ -24,6 +24,7 @@ const SideMenuSlideDown: React.FC<IProps> = ({ title, items, height }) => {
 
 const Window = styled.div<{ height: string; isExtended: boolean }>`
   height: 2rem;
+  margin-top: 1rem;
   overflow: hidden;
   transition: height ease 400ms;
   ${({ isExtended, height }) =>
@@ -58,5 +59,6 @@ const Title = styled.div`
 const Item = styled.div`
   color: ${({ theme }) => theme.textColor};
   margin-right: 1rem;
+  cursor: pointer;
 `;
 export default SideMenuSlideDown;
