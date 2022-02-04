@@ -3,8 +3,9 @@ import SearchMode from "../components/SearchMode";
 import Dropdown from "../components/Dropdown";
 import { useState } from "react";
 import HomeBanner from "../components/HomeBanner";
+import SideMenue from "../components/SideMenue";
 
-const listItem1 = [
+export const listItem1 = [
   "خرید خودرو",
   "ثبت اگهی خودرو",
   "قیمت روز خودرو",
@@ -13,7 +14,7 @@ const listItem1 = [
   "گوش به زنگ خودرو",
   "کمپانی های خودرو",
 ];
-const listItem2 = [
+export const listItem2 = [
   "خرید موتورسیکلت",
   "ثبت اگهی موتورسیکلت",
   "اخبار موتورسیکلت",
@@ -51,6 +52,7 @@ const Home: React.FC<{
           <div></div>
         </SearchModeToggler>
       ) : null}
+      <SideMenue></SideMenue>
       <Container>
         <Header>
           <HeaderItems>
