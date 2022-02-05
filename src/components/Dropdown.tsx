@@ -52,7 +52,7 @@ const ListItem = styled.li`
   padding-right: 1rem;
   transition: background-color 200ms;
   &:hover {
-    background-color: #555;
+    background-color: #999;
   }
 `;
 
