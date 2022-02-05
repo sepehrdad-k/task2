@@ -1,8 +1,8 @@
 import styled, { css } from "styled-components";
 import { useState } from "react";
 
-const firstCarGroup = ["آئودی", "آلفارومئو", "آریا", "آمیکو"];
-const secondCarGroup = [
+export const firstCarGroup = ["آئودی", "آلفارومئو", "آریا", "آمیکو"];
+export const secondCarGroup = [
   "اپل",
   "الدزمبیل",
   "ام وی ام",
@@ -12,7 +12,7 @@ const secondCarGroup = [
   "ایسوزو",
   "اس دبلیو ام",
 ];
-const thirdCarGroup = [
+export const thirdCarGroup = [
   "ب ام و",
   "بیوک",
   "بنز",
@@ -24,9 +24,16 @@ const thirdCarGroup = [
   "بیسو",
 ];
 
-const fourthCarGroup = ["پاژن", "پراید", "پروتون", "پورشه", "پژو", "پیکان"];
+export const fourthCarGroup = [
+  "پاژن",
+  "پراید",
+  "پروتون",
+  "پورشه",
+  "پژو",
+  "پیکان",
+];
 
-const fifthCarGroup = ["تویوتا", "تیبا", "تارا"];
+export const fifthCarGroup = ["تویوتا", "تیبا", "تارا"];
 
 const ContentSlider = () => {
   const [slideNumber, setSlideNumber] = useState(0);

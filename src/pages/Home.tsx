@@ -80,16 +80,36 @@ const Home: React.FC<{
           <span>32,028</span>اگهی خودرو
         </MobileTitle>
         <MobileNav position={navLinePosition}>
-          <MobileNavItem onClick={() => setNavLinePosition(0)}>
+          <MobileNavItem
+            onClick={() => {
+              setBannerContent("shortcutslider");
+              setNavLinePosition(0);
+            }}
+          >
             میانبر
           </MobileNavItem>
-          <MobileNavItem onClick={() => setNavLinePosition(1)}>
+          <MobileNavItem
+            onClick={() => {
+              setBannerContent("contentslider");
+              setNavLinePosition(1);
+            }}
+          >
             برند
           </MobileNavItem>
-          <MobileNavItem onClick={() => setNavLinePosition(2)}>
+          <MobileNavItem
+            onClick={() => {
+              setBannerContent("shasi");
+              setNavLinePosition(2);
+            }}
+          >
             شاسی
           </MobileNavItem>
-          <MobileNavItem onClick={() => setNavLinePosition(3)}>
+          <MobileNavItem
+            onClick={() => {
+              setBannerContent("price");
+              setNavLinePosition(3);
+            }}
+          >
             قیمت
           </MobileNavItem>
         </MobileNav>
@@ -467,7 +487,7 @@ const MobileButton = styled.button`
   width: 6rem;
   padding: 0.2rem;
   border-radius: 0.2rem;
-  border: 2px solid black;
+  border: 2px solid #999;
   cursor: pointer;
   color: ${({ theme }) => theme.textColor};
   background-color: ${({ theme }) => theme.primary};

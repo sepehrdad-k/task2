@@ -43,9 +43,13 @@ const Title = styled.div`
   height: 2rem;
   margin-bottom: 1rem;
   color: ${({ theme }) => theme.textColor};
+  @media only screen and (max-width: 979px) {
+    display: none;
+  }
 `;
 const ItemWrapper = styled.div`
   height: 20rem;
+  padding: 4rem;
   display: grid;
   grid-template-columns: repeat(4, 1fr);
   grid-template-rows: repeat(4, 1fr);
