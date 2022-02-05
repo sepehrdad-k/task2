@@ -174,6 +174,9 @@ const Window = styled.div`
   height: 25rem;
   position: relative;
   overflow: hidden;
+  @media only screen and (max-width: 979px) {
+    display: none;
+  }
 `;
 
 export default ContentSlider;

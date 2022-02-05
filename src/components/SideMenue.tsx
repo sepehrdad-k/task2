@@ -1,14 +1,19 @@
 import styled, { css } from "styled-components";
 import SideMenuSlideDown from "./SideMenuSlideDown";
-import { listItem1, listItem2 } from "../pages/Home";
+import { listItem1, listItem2, listItem3 } from "../pages/Home";
 
-const SideMenue = () => {
+interface IProps {
+  isclosed: boolean;
+  setIsClosed: React.Dispatch<React.SetStateAction<boolean>>;
+}
+
+const SideMenue: React.FC<IProps> = ({ isclosed, setIsClosed }) => {
   return (
-    <Container isClosed={false}>
+    <Container isClosed={isclosed}>
       <Overlay></Overlay>
       <SideBar>
         <SideBarHeader>
-          <Toggler>
+          <Toggler onClick={() => setIsClosed(true)}>
             <div></div>
             <div></div>
           </Toggler>
@@ -22,12 +27,9 @@ const SideMenue = () => {
           title="موتورسیکلت"
           items={listItem2}
         />
-        <Item>ثبت انم نمایشگاه</Item>
-        <Item>تماس با ما</Item>
-        <Item>تبلیغات شرکت ها </Item>
-        <Item>قوانین سایت</Item>
-        <Item>فرصت های شغلی</Item>
-        <Item>درباره ما</Item>
+        {listItem3.map((item) => (
+          <Item>{item}</Item>
+        ))}
       </SideBar>
     </Container>
   );
@@ -79,6 +81,7 @@ const Toggler = styled.div`
   display: flex;
   flex-direction: column;
   justify-content: center;
+  cursor: pointer;
   div {
     background-color: ${({ theme }) => theme.textColor};
     width: 2rem;
@@ -97,6 +100,8 @@ const Item = styled.div`
   padding: 1rem;
   display: flex;
   align-items: center;
+  color: ${({ theme }) => theme.textColor};
+  cursor: pointer;
 `;
 
 export default SideMenue;

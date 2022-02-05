@@ -20,7 +20,7 @@ export const listItem2 = [
   "اخبار موتورسیکلت",
   "گوش به زنگ موتورسیکلت",
 ];
-const listItem3 = [
+export const listItem3 = [
   "ثبت نام نمایشگاه",
   "تماس باما",
   "تبلیغات شرکت ها",
@@ -40,6 +40,7 @@ const Home: React.FC<{
   themeToggler: React.Dispatch<React.SetStateAction<boolean>>;
 }> = ({ themeToggler }) => {
   const [isSearchMode, setIsSearchMode] = useState(false);
+  const [isMenuClosed, setIsMenuClosed] = useState(true);
   const [bannerContent, setBannerContent] =
     useState<BannerContentType>("default");
 
@@ -52,8 +53,28 @@ const Home: React.FC<{
           <div></div>
         </SearchModeToggler>
       ) : null}
-      <SideMenue></SideMenue>
+      <SideMenue isclosed={isMenuClosed} setIsClosed={setIsMenuClosed} />
       <Container>
+        <MobileHeader>
+          <Logo>Bama.ir</Logo>
+          <Options>
+            <HambergurMenue onClick={() => setIsMenuClosed(false)}>
+              <div></div>
+              <div></div>
+              <div></div>
+            </HambergurMenue>
+            <MobileButton>ثبت اگهی</MobileButton>
+            <ThemeToggler onClick={() => themeToggler((prev) => !prev)}>
+              تغییر تم
+            </ThemeToggler>
+          </Options>
+          <SearchInput
+            onClick={() => setIsSearchMode(true)}
+            searchmode={isSearchMode}
+            placeholder={isSearchMode ? undefined : "جستجو"}
+            type="search"
+          />
+        </MobileHeader>
         <Header>
           <HeaderItems>
             <Nav>
@@ -71,7 +92,7 @@ const Home: React.FC<{
               searchmode={isSearchMode}
               placeholder={isSearchMode ? undefined : "جستجو"}
               type="search"
-            ></SearchInput>
+            />
             <Login>
               <LoginItem>ورود</LoginItem>
               <Vbar />
@@ -158,10 +179,11 @@ const Vbar = styled.div`
   background-color: ${({ theme }) => theme.textColor};
 `;
 const Main = styled.main`
-  width: 100%;
-  height: 100vh;
   display: flex;
   justify-content: center;
+  @media only screen and (max-width: 979px) {
+    width: 100vw;
+  }
 `;
 
 const Container = styled.div`
@@ -174,8 +196,17 @@ const Container = styled.div`
     "header header"
     "sidebar banner"
     ". .";
+  @media only screen and (max-width: 979px) {
+    width: 100vw;
+    grid-template-columns: 1fr;
+    grid-template-rows: 8rem 7rem 1fr;
+    grid-template-areas: "mobileheader" "mobilenav" "banner";
+  }
 `;
 const Header = styled.header`
+@media only screen and (max-width: 979px) {
+  display:none;
+}
   width: inherit;
   display: flex;
   flex-direction: column;
@@ -188,6 +219,7 @@ const Header = styled.header`
     height: 0.1rem;
     background-color: ${({ theme }) => theme.textColor};
   }
+  media
 `;
 const HeaderItems = styled.div`
   width: inherit;
@@ -224,10 +256,20 @@ const SearchInput = styled.input<{ searchmode: boolean }>`
   ${({ searchmode }) =>
     searchmode &&
     css`
+      @media only screen and (max-width: 979px) {
+        transform: translateY(-2rem);
+      }
       width: 27rem;
       transform: translateX(10rem);
       background-color: white;
     `}
+  @media only screen and (max-width: 979px) {
+    transition: none;
+    grid-area: search;
+    justify-self: center;
+    align-self: center;
+    width: 80vw;
+  }
 `;
 const Login = styled.div`
   width: 9rem;
@@ -251,8 +293,20 @@ const Logo = styled.div`
   z-index: 4;
   font-size: 1.6rem;
   color: ${({ theme }) => theme.textColor};
+  @media only screen and (max-width: 979px) {
+    color: #369736;
+    grid-area: logo;
+    justify-self: end;
+    align-self: center;
+    font-size: 2rem;
+    margin-left: 1rem;
+    z-index: 2;
+  }
 `;
 const SideBar = styled.div`
+  @media only screen and (max-width: 979px) {
+    display: none;
+  }
   display: flex;
   flex-direction: column;
   justify-content: space-evenly;
@@ -311,6 +365,10 @@ const Banner = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
+  @media only screen and (max-width: 979px) {
+    width: 100vw;
+    height: 50rem;
+  }
 `;
 const SearchModeToggler = styled.div`
   position: relative;
@@ -319,7 +377,7 @@ const SearchModeToggler = styled.div`
   height: 2rem;
   position: fixed;
   top: 4.5%;
-  right: 4rem;
+  right: 1rem;
   display: flex;
   flex-direction: column;
   justify-content: space-around;
@@ -345,6 +403,48 @@ const ThemeToggler = styled.button`
   background-color: ${({ theme }) => theme.textColor};
   color: ${({ theme }) => theme.mainColor};
   cursor: pointer;
+`;
+
+const MobileHeader = styled.header`
+  display: grid;
+  grid-template-columns: 17rem 1fr;
+  grid-template-rows: 1fr 1fr;
+  grid-template-areas:
+    "options logo"
+    "search search";
+  @media only screen and (min-width: 980px) {
+    display: none;
+  }
+`;
+const Options = styled.div`
+  width: 17rem;
+  height: 4rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+`;
+const HambergurMenue = styled.div`
+  margin-right: 1rem;
+  width: 2rem;
+  height: 2rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  cursor: pointer;
+  div {
+    width: inherit;
+    height: 0.25rem;
+    background-color: ${({ theme }) => theme.textColor};
+  }
+`;
+const MobileButton = styled.button`
+  width: 6rem;
+  padding: 0.2rem;
+  border-radius: 0.2rem;
+  border: none;
+  cursor: pointer;
+  color: ${({ theme }) => theme.textColor};
+  background-color: ${({ theme }) => theme.primary};
 `;
 
 export default Home;
