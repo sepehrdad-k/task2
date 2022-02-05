@@ -1,7 +1,7 @@
 import styled, { css } from "styled-components";
 import { useState } from "react";
 
-const firstOptions = [
+export const firstOptions = [
   "صفر",
   "کم مصرف",
   " اقتصادی",
@@ -11,7 +11,7 @@ const firstOptions = [
   "8 سیلندر",
   "ژاپنی ها",
 ];
-const secondOptions = [
+export const secondOptions = [
   "وارداتی",
   "زیر1300cc",
   "لوکس",
@@ -22,7 +22,7 @@ const secondOptions = [
   "المانی ها",
 ];
 
-const thirdOptions = [
+export const thirdOptions = [
   "مونتاژی",
   "داخلی",
   "دو دیفرانسیل",

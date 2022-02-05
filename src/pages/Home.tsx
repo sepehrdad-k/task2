@@ -41,6 +41,7 @@ const Home: React.FC<{
 }> = ({ themeToggler }) => {
   const [isSearchMode, setIsSearchMode] = useState(false);
   const [isMenuClosed, setIsMenuClosed] = useState(true);
+  const [navLinePosition, setNavLinePosition] = useState(0);
   const [bannerContent, setBannerContent] =
     useState<BannerContentType>("default");
 
@@ -75,6 +76,23 @@ const Home: React.FC<{
             type="search"
           />
         </MobileHeader>
+        <MobileTitle>
+          <span>32,028</span>اگهی خودرو
+        </MobileTitle>
+        <MobileNav position={navLinePosition}>
+          <MobileNavItem onClick={() => setNavLinePosition(0)}>
+            میانبر
+          </MobileNavItem>
+          <MobileNavItem onClick={() => setNavLinePosition(1)}>
+            برند
+          </MobileNavItem>
+          <MobileNavItem onClick={() => setNavLinePosition(2)}>
+            شاسی
+          </MobileNavItem>
+          <MobileNavItem onClick={() => setNavLinePosition(3)}>
+            قیمت
+          </MobileNavItem>
+        </MobileNav>
         <Header>
           <HeaderItems>
             <Nav>
@@ -161,6 +179,9 @@ const Home: React.FC<{
         <Banner>
           <HomeBanner content={bannerContent}></HomeBanner>
         </Banner>
+        <MobileBanner>
+          <HomeBanner content={bannerContent}></HomeBanner>
+        </MobileBanner>
       </Container>
     </Main>
   );
@@ -199,8 +220,12 @@ const Container = styled.div`
   @media only screen and (max-width: 979px) {
     width: 100vw;
     grid-template-columns: 1fr;
-    grid-template-rows: 8rem 7rem 1fr;
-    grid-template-areas: "mobileheader" "mobilenav" "banner";
+    grid-template-rows: 8rem 3rem 4rem 1fr;
+    grid-template-areas:
+      "mobileheader"
+      "mobiletitle"
+      "mobilenav"
+      "mobilebanner";
   }
 `;
 const Header = styled.header`
@@ -266,6 +291,7 @@ const SearchInput = styled.input<{ searchmode: boolean }>`
   @media only screen and (max-width: 979px) {
     transition: none;
     grid-area: search;
+    background-color: #fff;
     justify-self: center;
     align-self: center;
     width: 80vw;
@@ -366,8 +392,7 @@ const Banner = styled.div`
   justify-content: center;
   align-items: center;
   @media only screen and (max-width: 979px) {
-    width: 100vw;
-    height: 50rem;
+    display: none;
   }
 `;
 const SearchModeToggler = styled.div`
@@ -412,6 +437,7 @@ const MobileHeader = styled.header`
   grid-template-areas:
     "options logo"
     "search search";
+  background-color: ${({ theme }) => theme.primary};
   @media only screen and (min-width: 980px) {
     display: none;
   }
@@ -441,10 +467,64 @@ const MobileButton = styled.button`
   width: 6rem;
   padding: 0.2rem;
   border-radius: 0.2rem;
-  border: none;
+  border: 2px solid black;
   cursor: pointer;
   color: ${({ theme }) => theme.textColor};
   background-color: ${({ theme }) => theme.primary};
 `;
-
+const MobileTitle = styled.div`
+  grid-area: mobiletitle;
+  width: 100vw;
+  height: 3rem;
+  padding-right: 2rem;
+  padding-top: 0.5rem;
+  background-color: #efefef;
+  span {
+    color: teal;
+    margin-left: 1rem;
+  }
+  @media only screen and (min-width: 980px) {
+    display: none;
+  }
+`;
+const MobileNav = styled.nav<{ position: number }>`
+  grid-area: mobilenav;
+  width: 100vw;
+  height: 4rem;
+  border-bottom: 0.1rem solid ${({ theme }) => theme.textColor};
+  position: relative;
+  display: flex;
+  &::after {
+    content: "";
+    position: absolute;
+    bottom: 0;
+    right: 0;
+    height: 0.15rem;
+    width: 25vw;
+    background-color: purple;
+    transition: transform 300ms;
+    ${({ position }) => css`
+      transform: translateX(${position * -25}vw);
+    `}
+  }
+  @media only screen and (min-width: 980px) {
+    display: none;
+  }
+`;
+const MobileNavItem = styled.div`
+  width: 25vw;
+  height: 4rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+  color: ${({ theme }) => theme.textColor};
+`;
+const MobileBanner = styled.div`
+  width: 100vw;
+  height: max-content;
+  @media only screen and (min-width: 980px) {
+    display: none;
+  }
+`;
 export default Home;

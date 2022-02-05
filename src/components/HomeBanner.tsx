@@ -1,5 +1,6 @@
 import ContentSlider from "./ContentSlider";
 import ShortcutSlider from "./ShortcutSlider";
+import ShortCuts from "./ShortCuts";
 import Shasi from "./Shasi";
 import PriceRange from "./PriceRange";
 import DefaultBanner from "./DefaultBanner";
@@ -15,7 +16,12 @@ const HomeBanner: React.FC<{ content: BannerContentType }> = ({ content }) => {
   } else if (content === "price") {
     return <PriceRange></PriceRange>;
   } else {
-    return <DefaultBanner></DefaultBanner>;
+    return (
+      <>
+        <DefaultBanner></DefaultBanner>
+        <ShortCuts></ShortCuts>
+      </>
+    );
   }
 };
 

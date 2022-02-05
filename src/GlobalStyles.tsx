@@ -15,8 +15,6 @@ const GlobalStyles = createGlobalStyle`
     }
     body{
         background-color: ${({ theme }) => theme.mainColor};
-        display: flex;
-        justify-content: center;
     }
 `;
 export default GlobalStyles;
