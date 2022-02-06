@@ -33,7 +33,6 @@ const PriceRange = () => {
 };
 
 const Container = styled.div`
-  width: 48rem;
   height: 25rem;
   display: flex;
   flex-direction: column;
@@ -53,6 +52,9 @@ const ItemWrapper = styled.div`
   display: grid;
   grid-template-columns: repeat(4, 1fr);
   grid-template-rows: repeat(4, 1fr);
+  @media only screen and (max-width: 979px) {
+    grid-template-columns: repeat(auto-fit, 9rem);
+  }
 `;
 const Item = styled.div`
   width: max-content;
